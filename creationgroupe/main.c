@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 char nom_eleve[99][99] ;
+#define NB_STUDENT 12
 
 // définie les valeur de base du tableau ( nom des eleves et si ces eleve on déja été choisie dans un groupe (par défault aucun n'eleve n'est chosiie))
 void define ()
@@ -20,7 +21,7 @@ strcpy(&nom_eleve[10][0],"Louis");
 strcpy(&nom_eleve[11][0],"Evan");
 strcpy(&nom_eleve[12][0],"Theo");
 nom_eleve[0][0] = 'y';
-for (int i =1;i < 13 ; i++)
+for (int i =1;i < NB_STUDENT+1 ; i++)
     {
     nom_eleve[0][i] = 'x';
     }
@@ -32,7 +33,8 @@ int main()
 int random1 = 0;
 int random2 = 0;
 define();
-for (int i = 1; i!= 7;i++)// boucle 6 fois car on veut 6 groupe
+srand(time(NULL));
+for (int i = 1; i!= (NB_STUDENT/2)+1;i++)// boucle 6 fois car on veut 6 groupe
     {
     while (nom_eleve[0][random1] == 'y' || nom_eleve[0][random2] == 'y' || random1 == random2 )//cherche 2 eleve différent et pas encore choisie dans un groupe
         {
@@ -41,7 +43,7 @@ for (int i = 1; i!= 7;i++)// boucle 6 fois car on veut 6 groupe
         }
     nom_eleve[0][random2] = 'y';
     nom_eleve[0][random1] = 'y';
-    printf("\nLe groupe numero : %d\n est constituer de : %s et de : %s\n",i,&nom_eleve[random1][0],&nom_eleve[random2][0]);
+    printf("\nLe groupe numero : %d  est constituer de : %s et de : %s et il effectue la tache numero : %d\n",i,&nom_eleve[random1][0],&nom_eleve[random2][0],i);
     random2 = 0;
     random1 = 0;
     }
